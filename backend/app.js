@@ -35,16 +35,14 @@ app.use((req, res, next) => {
     next();
 });
 
-/* utilisation de Helmet pour securiser l'appli contre les attaques de type ClickJacking,les attaques de type MITM(attaque homme du milieu) 
-les attaques de type cross-site scripting et autres injections intersites,les attaques spécifiquement ciblées (Express) et autres... */
-app.use(helmet.xssFilter());
-app.use(helmet.frameguard({ action: 'deny' }));
-app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds }));
-app.use(helmet.contentSecurityPolicy());
-app.use(helmet.hidePoweredBy());
-app.use(helmet.ieNoOpen());
-app.use(helmet.noSniff());
+// Utilisation de helmet pour sécurisation du site :
 
+app.use(helmet.xssFilter()); // contre attaques cross-site scripting et injections intersites
+app.use(helmet.frameguard({ action: 'deny' })); // contre attaques clickjacking
+app.use(helmet.hsts({ maxAge: sixtyDaysInSeconds })); // pour chiffrer les transmission contre les attaques homme du milieu (MITM)
+app.use(helmet.contentSecurityPolicy()); // contre attaques cross-site scripting et injections intersites
+app.use(helmet.hidePoweredBy()); // contre les attaques spécifiquement ciblées sur Express
+app.use(helmet.noSniff()); // protège les navigateur du reniflage du code MINE (contre attaques cross-site scripting)
 
 
 // middleware pour la gestion d'image de manière statique
