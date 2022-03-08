@@ -1,6 +1,6 @@
 const passwordValidator = require('password-validator');
 
-// création du schéma du pour le mot de passe
+// création du schéma du pour un mot de passe complexe
 const schemaPasseword = new passwordValidator();
 
 schemaPasseword

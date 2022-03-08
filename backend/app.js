@@ -8,9 +8,10 @@ const userRoutes = require('./routes/user');
 const path = require('path');
 var sixtyDaysInSeconds = 5184000;
 
+require('dotenv').config()
 
 // connection à la base de donnée Mongo DB
-mongoose.connect('mongodb+srv://Iulius_Dures:UEvuny7653qriSZ@iulius.lhgup.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
